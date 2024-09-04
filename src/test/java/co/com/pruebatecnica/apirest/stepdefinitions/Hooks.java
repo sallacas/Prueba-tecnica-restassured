@@ -48,4 +48,19 @@ public class Hooks {
                 entry.get("lastname")
         );
     }
+
+    @DataTableType
+    public UpdateBookingDTO updateBookingEntry(Map<String, String> entry) {
+        return new UpdateBookingDTO(
+                entry.get("firstname"),
+                entry.get("lastname"),
+                Integer.parseInt(entry.get("totalprice")),
+                Boolean.parseBoolean(entry.get("depositpaid")),
+                new BookingDatesDTO(
+                        entry.get("checkin"),
+                        entry.get("checkin")
+                ),
+                entry.get("additionalneeds")
+        );
+    }
 }

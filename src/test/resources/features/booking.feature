@@ -32,7 +32,7 @@ Feature: Crear reservas de libros
     Examples:
       | firstname | lastname  |
       | Pedro     | Gutierrez |
-      #| Javier   | Jaramillo |
+      | Javier    | Jaramillo |
 
   @UpdateBookings
   Scenario Outline: Actualizar los datos de una reserva y validar la respuesta
@@ -43,9 +43,10 @@ Feature: Crear reservas de libros
       | firstname   | lastname   | totalprice   | depositpaid   | checkin   | checkout   | additionalneeds   |
       | <firstname> | <lastname> | <totalprice> | <depositpaid> | <checkin> | <checkout> | <additionalneeds> |
     Then debería recibir un código de respuesta 200 OK
-    #And el campo "booking.firstname" en la respuesta debería ser "<firstname>" para la reserva
+    And el campo "firstname" en la respuesta debería ser "<firstname>" para la reserva
+    And el campo "lastname" en la respuesta debería ser "<lastname>" para la reserva
 
     Examples:
       | firstname | lastname  | totalprice | depositpaid | checkin    | checkout   | additionalneeds | initialFirstName | initialLastName |
       | Jose      | Gutierrez | 100        | true        | 2023-05-12 | 2023-06-28 | Comics          | Pedro            | Gutierrez       |
-      #| Javier    | Mora | 356        | true        | 2023-06-20 | 2023-07-20 | Terror          | Pedro           | Gutierrez      |
+      | Javier    | Mora      | 356        | true        | 2023-06-20 | 2023-07-20 | Terror          | Javier           | Jaramillo       |

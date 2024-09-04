@@ -2,11 +2,13 @@ package co.com.pruebatecnica.apirest.stepdefinitions;
 
 import co.com.pruebatecnica.apirest.models.booking.CreateBookingDTO;
 import co.com.pruebatecnica.apirest.models.booking.GetBookingParamsDTO;
+import co.com.pruebatecnica.apirest.models.booking.UpdateBookingDTO;
 import co.com.pruebatecnica.apirest.models.token.CreateTokenDTO;
 import co.com.pruebatecnica.apirest.questions.ValidateField;
 import co.com.pruebatecnica.apirest.tasks.get.ConsumeGetPathParams;
 import co.com.pruebatecnica.apirest.tasks.get.ConsumeGetQueryParams;
 import co.com.pruebatecnica.apirest.tasks.post.ConsumePost;
+import co.com.pruebatecnica.apirest.tasks.put.ConsumePut;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
@@ -66,6 +68,12 @@ public class BookingStepDefinitions {
     }
 
     @And("actualizo con la solicitud PUT a {string} con los siguientes datos de reserva:")
-    public void actualizoConLaSolicitudPUTAConLosSiguientesDatosDeReserva(String endpoint, DataTable table) {
+    public void updateBooking(String endpoint, DataTable table) {
+        List<UpdateBookingDTO> data = table.asList(UpdateBookingDTO.class);
+        String param = SerenityRest.lastResponse().jsonPath().getString("[0].bookingid");
+        Assert.assertNotNull("El campo bookingid no existe en la respuesta", param);
+        OnStage.theActor(ACTOR).attemptsTo(
+                ConsumePut.with(BASE_URL.replace(TYPE_ENVIRONMENT, ENV_QA), data.get(0), endpoint, String.valueOf(ContentType.JSON), param)
+        );
     }
 }
