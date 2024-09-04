@@ -8,8 +8,9 @@ import lombok.Getter;
 public enum Endpoints {
     CREATE_TOKEN("/auth"),
     CREATE_BOOKING("/booking"),
-    GET_BOOKING(""),
-    UPDATE_BOOKING("");
+    GET_BOOKING_IDS("/booking"),
+    GET_BOOKING("/booking/{id}"),
+    UPDATE_BOOKING("/booking/{id}");
     private final String endpoint;
 
 }
