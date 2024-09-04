@@ -1,6 +1,5 @@
 package co.com.pruebatecnica.apirest.interactions;
 
-import co.com.pruebatecnica.apirest.models.token.CreateTokenDTO;
 import co.com.pruebatecnica.apirest.utils.Constantes;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

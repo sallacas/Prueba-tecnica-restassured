@@ -3,7 +3,6 @@ package co.com.pruebatecnica.apirest.stepdefinitions;
 import co.com.pruebatecnica.apirest.questions.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
 import net.serenitybdd.screenplay.actors.OnStage;
 
