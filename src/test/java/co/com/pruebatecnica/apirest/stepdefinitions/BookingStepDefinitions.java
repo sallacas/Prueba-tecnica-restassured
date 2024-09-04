@@ -4,7 +4,9 @@ import co.com.pruebatecnica.apirest.models.booking.CreateBookingDTO;
 import co.com.pruebatecnica.apirest.models.booking.GetBookingParamsDTO;
 import co.com.pruebatecnica.apirest.models.booking.UpdateBookingDTO;
 import co.com.pruebatecnica.apirest.models.token.CreateTokenDTO;
+import co.com.pruebatecnica.apirest.questions.StatusLine;
 import co.com.pruebatecnica.apirest.questions.ValidateField;
+import co.com.pruebatecnica.apirest.tasks.delete.ConsumeDelete;
 import co.com.pruebatecnica.apirest.tasks.get.ConsumeGetPathParams;
 import co.com.pruebatecnica.apirest.tasks.get.ConsumeGetQueryParams;
 import co.com.pruebatecnica.apirest.tasks.post.ConsumePost;
@@ -13,7 +15,6 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
-
 import lombok.extern.slf4j.Slf4j;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.actors.OnStage;
@@ -75,5 +76,19 @@ public class BookingStepDefinitions {
         OnStage.theActor(ACTOR).attemptsTo(
                 ConsumePut.with(BASE_URL.replace(TYPE_ENVIRONMENT, ENV_QA), data.get(0), endpoint, String.valueOf(ContentType.JSON), param)
         );
+    }
+
+    @And("elimino la reserva con la solicitud DELETE a {string} con el id obtenido en la respuesta")
+    public void eliminoLaReservaConElIdObtenidoEnLaRespuesta(String endpoint) {
+        String param = SerenityRest.lastResponse().jsonPath().getString("[0].bookingid");
+        Assert.assertNotNull("El campo bookingid no existe en la respuesta", param);
+        OnStage.theActorInTheSpotlight().attemptsTo(
+                ConsumeDelete.with(BASE_URL.replace(TYPE_ENVIRONMENT, ENV_QA), endpoint, param)
+        );
+    }
+
+    @And("la respuesta del servicio es igual a {string}")
+    public void laRespuestaDelServicioEsIgualA(String value) {
+        OnStage.theActorInTheSpotlight().should(seeThat(StatusLine.is(value)));
     }
 }

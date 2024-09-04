@@ -2,11 +2,9 @@ package co.com.pruebatecnica.apirest.stepdefinitions;
 
 import co.com.pruebatecnica.apirest.models.token.CreateTokenDTO;
 import co.com.pruebatecnica.apirest.tasks.post.ConsumePost;
-
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
-
 import net.serenitybdd.screenplay.actors.OnStage;
 
 import java.util.List;

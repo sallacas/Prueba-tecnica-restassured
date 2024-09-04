@@ -50,3 +50,17 @@ Feature: Crear reservas de libros
       | firstname | lastname  | totalprice | depositpaid | checkin    | checkout   | additionalneeds | initialFirstName | initialLastName |
       | Jose      | Gutierrez | 100        | true        | 2023-05-12 | 2023-06-28 | Comics          | Pedro            | Gutierrez       |
       | Javier    | Mora      | 356        | true        | 2023-06-20 | 2023-07-20 | Terror          | Javier           | Jaramillo       |
+
+  @DeleteBookings
+  Scenario Outline: Eliminar una reserva y validar la respuesta
+    When envio la solicitud las reservas en "GET_BOOKING_IDS" con los siguientes query params:
+      | firstname   | lastname   |
+      | <firstname> | <lastname> |
+    And elimino la reserva con la solicitud DELETE a "DELETE_BOOKING" con el id obtenido en la respuesta
+    Then debería recibir un código de respuesta 201 OK
+    And la respuesta del servicio es igual a "HTTP/1.1 201 Created"
+
+    Examples:
+      | firstname | lastname  |
+      | Jose      | Gutierrez |
+      | Javier    | Mora      |

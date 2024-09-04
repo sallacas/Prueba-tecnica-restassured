@@ -1,6 +1,9 @@
 package co.com.pruebatecnica.apirest.stepdefinitions;
 
-import co.com.pruebatecnica.apirest.models.booking.*;
+import co.com.pruebatecnica.apirest.models.booking.BookingDatesDTO;
+import co.com.pruebatecnica.apirest.models.booking.CreateBookingDTO;
+import co.com.pruebatecnica.apirest.models.booking.GetBookingParamsDTO;
+import co.com.pruebatecnica.apirest.models.booking.UpdateBookingDTO;
 import co.com.pruebatecnica.apirest.models.token.CreateTokenDTO;
 import groovy.util.logging.Slf4j;
 import io.cucumber.java.Before;
