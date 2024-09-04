@@ -1,3 +1,6 @@
+# author: jdcasallas12@gmail.com
+# description: Prueba de integración con la API REST de la aplicación de reservas de libros
+@Regression
 Feature: Crear reservas de libros
 
   Background:

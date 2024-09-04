@@ -8,8 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features/booking.feature",
         glue = "co.com.pruebatecnica.apirest.stepdefinitions",
-        snippets = CucumberOptions.SnippetType.CAMELCASE,
-        tags = "@DeleteBookings"
+        snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 public class TestBookingRunner {
 }
